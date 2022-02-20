@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="XMLstyle.css"?>
+<xs:schema xmlns:xs = "http://www.w3.org/2001/XMLSchema">
+	<SetList>
+		<heading> Wedding cover band setlist </heading>
+		<song>
+			<title> Satisfaction </title>
+			<line> <text> Artist: </text> <artist> The Rolling Stones </artist> </line>
+			<line> <text> Genre: </text> <genre> Blues rock, Hard rock </genre> </line>
+			<line> <text> Year: </text> <year> 1965 </year> </line>
+		</song>
+		<song>
+			<title> Come Fly With Me </title>
+			<line> <text> Artist: </text> <artist> Frank Sinatra </artist> </line>
+			<line> <text> Genre: </text> <genre> Vocal jazz, Traditional pop </genre> </line>
+			<line> <text> Year: </text> <year> 1958 </year> </line>
+		</song>
+		<song>
+			<title> Get Lucky </title>
+			<line> <text> Artist: </text> <artist> Daft Punk </artist> </line>
+			<line> <text> Genre: </text> <genre> Disco, Funk, Pop </genre> </line>
+			<line> <text> Year: </text> <year> 2013 </year> </line>
+		</song>
+		<song>
+			<title> Despacito </title>
+			<line> <text> Artist: </text> <artist> Luis Fonsi Ft. Justin Bieber </artist> </line>
+			<line> <text> Genre: </text> <genre> Reggaeton, Latin pop </genre> </line>
+			<line> <text> Year: </text> <year> 2017 </year> </line>
+		</song>
+		<song>
+			<title> Shape Of You </title>
+			<line> <text> Artist: </text> <artist> Ed Sheeran </artist> </line>
+			<line> <text> Genre: </text> <genre> Pop, Dancehall, Tropical house </genre> </line>
+			<line> <text> Year: </text> <year> 2017 </year> </line>
+		</song>
+		<song>
+			<title> Watermelon Sugar </title>
+			<line> <text> Artist: </text> <artist> Harry Styles </artist> </line>
+			<line> <text> Genre: </text> <genre> Rock, Funk-pop, Indie pop </genre> </line>
+			<line> <text> Year: </text> <year> 2020 </year> </line>
+		</song>
+		<song>
+			<title> Sugar </title>
+			<line> <text> Artist: </text> <artist> Maroon 5 </artist> </line>
+			<line> <text> Genre: </text> <genre> Disco, Funk, Pop, Soul </genre> </line>
+			<line> <text> Year: </text> <year> 2015 </year> </line>
+		</song>
+		<song>
+			<title> Let’s Dance </title>
+			<line> <text> Artist: </text> <artist> David Bowie </artist> </line>
+			<line> <text> Genre: </text> <genre> Funk, Dance-pop, Funk rock </genre> </line>
+			<line> <text> Year: </text> <year> 1983 </year> </line>
+		</song>
+		<song>
+			<title> Signed, Sealed, Delivered </title>
+			<line> <text> Artist: </text> <artist> Stevie Wonder </artist> </line>
+			<line> <text> Genre: </text> <genre> Soul </genre> </line>
+			<line> <text> Year: </text> <year> 1970 </year> </line>
+		</song>
+		<song>
+			<title> Livin’ On A Prayer </title>
+			<line> <text> Artist: </text> <artist> Bon Jovi </artist> </line>
+			<line> <text> Genre: </text> <genre> Glam metal </genre> </line>
+			<line> <text> Year: </text> <year> 1986 </year> </line>
+		</song>
+	</SetList>
+</xs:schema>
+
+
+
+
+

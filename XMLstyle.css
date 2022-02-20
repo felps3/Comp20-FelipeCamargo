@@ -1,0 +1,26 @@
+heading, title, line, song {
+     display : block;
+}
+
+heading {
+     color: green;
+     font-size : 40px;
+     background-color : powderblue;
+     text-align: center;
+}
+
+song {
+	color: black;
+	background-color : gray;
+	padding: 20px;
+	border: 1px #000 solid;
+}
+
+title {
+     font-size : 25px;
+     font-weight : bold;
+}
+
+artist, genre, year {
+	text-decoration: underline;
+}
