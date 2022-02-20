@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	
+	<!-- Head section -->
+	<head>
+
+		<title> CS 20 - Homework 4 - Felipe Camargo </title>
+
+		<style>
+			h1 {background: #e20300; width: 300px; text-align: center; border: solid; border-color: #000; border-width: 5px;border-radius: 0px;}
+		</style>
+
+	</head>
+
+	<!-- Body section -->
+	<body>
+
+		<h1> Joe&#x27;s Hotdog Stand </h1>
+
+		<script language = "javascript">
+			var hot_dog = prompt("How many hot dogs do you want? (3.75$)", "0");
+			var fries = prompt("How many fries do you want? (2.00$)", "0");
+			var soda = prompt("How many sodas do you want? (1.80$)", "0");
+
+			var subtotal = (hot_dog * 3.75) + (fries * 2.00) + (soda * 1.80);
+
+			if (subtotal >= 20) {
+				subtotal_dis = subtotal * 0.9;
+				subtotal_tax = subtotal_dis * 1.0625;
+			} else {
+				subtotal_tax = subtotal * 1.0625;
+			}
+
+			//Order feedback
+			document.write("Items in order:<br/>");
+			if (hot_dog > 0) {
+				document.write("Hot dog: " + hot_dog + "<br/>");
+			}
+			if (fries > 0) {
+				document.write("Fries: " + fries + "<br/>");
+			}
+			if (soda > 0) {
+				document.write("Soda: " + soda + "<br/>");
+			}
+			if ((hot_dog + fries + soda) <= 0) {
+				document.write("None<br/>");
+			}
+
+			document.write("<br/>");
+
+			document.write("Subtotal: " + (subtotal.toFixed(2)) + "$ <br/>");
+			if (subtotal >= 20) {
+				document.write("Discount (10%): -" + ((subtotal * 0.1).toFixed(2)) + "$ <br/>");
+			}
+
+			document.write("Tax: " + ((subtotal * 0.0625).toFixed(2)) + "$ <br/>");
+
+			document.write("Total: " + (subtotal_tax.toFixed(2)) + "$ <br/>");
+
+		</script>
+	</body>
+
+</html>
