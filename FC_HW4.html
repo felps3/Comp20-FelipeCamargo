@@ -26,9 +26,11 @@
 
 			if (subtotal >= 20) {
 				subtotal_dis = subtotal * 0.9;
-				subtotal_tax = subtotal_dis * 1.0625;
+				tax = subtotal_dis * 0.0625;
+				subtotal_tax = subtotal_dis + tax;
 			} else {
-				subtotal_tax = subtotal * 1.0625;
+				tax = subtotal * 0.0625;
+				subtotal_tax = subtotal + tax;
 			}
 
 			//Order feedback
@@ -53,7 +55,7 @@
 				document.write("Discount (10%): -" + ((subtotal * 0.1).toFixed(2)) + "$ <br/>");
 			}
 
-			document.write("Tax: " + ((subtotal * 0.0625).toFixed(2)) + "$ <br/>");
+			document.write("Tax: " + (tax.toFixed(2)) + "$ <br/>");
 
 			document.write("Total: " + (subtotal_tax.toFixed(2)) + "$ <br/>");
 
