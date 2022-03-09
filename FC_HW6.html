@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	
+	<!-- Head section -->
+	<head>
+
+		<title> CS 20 - Homework 6 - Felipe Camargo </title>
+
+		<style>
+			* {background: #2f72d0;}
+			h1 {background: #0b00cb; width: 300px; text-align: center; border: solid; border-color: #000; border-width: 5px;border-radius: 0px; display: block;margin-left: auto; margin-right: auto;}
+			.header {width: 100%;align-items: center; justify-content: center;}
+			.java {text-align: center; padding-top: 5%;font-size: 25px;}
+			form {text-align: center;}
+			.press, #output_Amicable,  #Factors1, #Factors2 {text-align: center;}
+			#button {color: black; background: #929fa3;}
+			#number1, #number2 {background: #d0d6d8;}
+		</style>
+
+	</head>
+
+	<!-- Body section -->
+	<body>
+		<h1> Amicable Numbers </h1>
+
+		<br/>
+
+		<form name = "numbers">
+			<input type = "text" id = "number1">
+			<input type = "text" id = "number2">
+		</form>
+
+		<br/>
+
+		<div class = "press">
+			<button id = "button"> Enter </button>
+		</div>
+
+		<div class = "java">
+			<script language = "javascript">
+
+				function isFactor(num, i)
+				{
+					return (num % i == 0);
+				}
+
+				function sumFunc(total, num) {
+  					return total + num;
+				}
+
+				function getFactors(num)
+				{
+					var arr = [];
+					var counter = 0;
+					for (i = 1; i <= Math.ceil(num / 2); i++) {
+						if (isFactor(num, i)) {
+							arr[counter] = i;
+							counter++;
+						}
+					}
+
+					return arr;
+				}
+
+				function displayAmicable(num1, num2) {
+  					if (sum1 == num2 && sum2 == num1) {
+						document.getElementById("output_Amicable").innerHTML = "The numbers: " + num1 + " and " + num2 + " are amicable <br/>";
+					} else {
+						document.getElementById("output_Amicable").innerHTML = "The numbers: " + num1 + " and " + num2 + " not amicable <br/>";
+					}
+				}
+
+				function displayFactors(num1, num2, arr1, arr2) {
+  					document.getElementById("Factors1").innerHTML = "Factors of " + num1 + ": " + arr1.join(", ") + "<br/>";
+  					document.getElementById("Factors2").innerHTML = "Factors of " + num2 + ": " + arr2.join(", ") + "<br/>";
+				}
+
+				function areAmicable(num1, num2)
+				{
+
+					if (num1 > 1 && num2 > 1) {
+
+						arr1 = getFactors(num1);
+						arr2 = getFactors(num2);
+
+						sum1 = arr1.reduce(sumFunc);
+						sum2 = arr2.reduce(sumFunc);
+
+						displayAmicable(num1, num2);
+						displayFactors(num1, num2, arr1, arr2)
+
+					} else {
+						document.getElementById("output_Amicable").innerHTML = "Please only input values bigger than 1 <br/>";
+						document.getElementById("Factors1").innerHTML = "<br/>";
+						document.getElementById("Factors2").innerHTML = "<br/>";
+					}
+
+				}
+
+				button = document.getElementById("button");
+
+				button.onclick = function () {
+
+					number1 = parseInt(document.numbers.number1.value);
+					number2 = parseInt(document.numbers.number2.value);
+
+					areAmicable(number1, number2);
+ 				}
+				
+
+			</script>
+		</div>
+
+		<div id = "output_Amicable"> </div>
+		<br/>
+		<div id = "Factors1"> </div>
+		<div id = "Factors2"> </div>
+
+	</body>
+
+</html>
