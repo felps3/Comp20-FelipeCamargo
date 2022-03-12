@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	
+	<!-- Head section -->
+	<head>
+
+		<title> CS 20 - Homework 6 - Felipe Camargo </title>
+
+		<style>
+			* {background: #2f72d0;}
+			h1 {background: #0b00cb; width: 300px; text-align: center; border: solid; border-color: #000; border-width: 5px;border-radius: 0px; display: block;margin-left: auto; margin-right: auto;}
+			.header {width: 100%;align-items: center; justify-content: center;}
+			.java {text-align: center; padding-top: 5%;font-size: 25px;}
+			.box {text-align: center; display: block; background:;}
+
+			
+		</style>
+
+	</head>
+
+	<!-- Body section -->
+	<body>
+		<h1> Checkbox </h1>
+
+		<div class = "box">
+	  		<input type="checkbox" id = "all">
+			<label for = "all" id = "labelALL"> Check All </label>
+
+			<br/>
+			<br/>
+
+			<input type="checkbox" id = "one" name = "ind">
+			<label for = "one"> One </label>
+
+			<input type="checkbox" id = "two" name = "ind">
+			<label for = "twp"> Two </label>
+
+			<input type="checkbox" id = "three" name = "ind">
+			<label for = "three"> Three </label>
+
+			<input type="checkbox" id = "four" name = "ind">
+			<label for = "four"> Four </label>
+		</div>
+
+		<div class = "java">
+			<script language = "javascript">
+				checked = false;
+				document.getElementById('all').onclick = function() {
+    				var checkboxes = document.getElementsByName('ind');
+    				for (var checkbox of checkboxes) {
+        				checkbox.checked = this.checked;
+    				}
+    				if (!checked) {
+						document.getElementById('labelALL').innerText = "Uncheck All";
+    				} else {
+    					document.getElementById('labelALL').innerText = "Check All";
+    				}
+    				checked = !checked; 
+    			}
+    		</script>
+    	</div>
+
+	</body>
+
+</html>
