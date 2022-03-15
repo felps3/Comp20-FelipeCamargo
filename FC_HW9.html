@@ -59,7 +59,7 @@
 						artists = "<br>";
 						data.forEach(function(song) {  /* Iterate over all elements */
 							if(song.Genre.includes($('#genres').val())) { /*Check if has correct genre */
-								artists += song.Artist + "<br>"; 
+								artists += song.title + "<br>"; 
 							}
 						})
 						document.querySelector(".result").innerHTML = artists;
