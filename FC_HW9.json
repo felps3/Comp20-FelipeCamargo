@@ -1,0 +1,56 @@
+[
+	{
+		"title" : "Satisfaction",
+		"Artist" : "The Rolling Stones",
+		"Genre" : ["Blues-rock", "Hard-rock"],
+		"Year" : 1965 },
+	{
+		"title" : "Come Fly With Me",
+		"Artist" : "Frank Sinatra",
+		"Genre" : ["Vocal-jazz", "Traditional-pop"],
+		"Year" : 1958 },
+	{
+		"title" : "Get Lucky",
+		"Artist" : "Daft Punk",
+		"Genre" : ["Disco", "Funk", "Pop"],
+		"Year" : 2013 },
+	{
+		"title" : "Despacito",
+		"Artist" : "Luis Fonsi Ft. Justin Bieber",
+		"Genre" : ["Reggaeton", "Latin-pop"],
+		"Year" : 2017 },
+	{
+		"title" : "Shape Of You",
+		"Artist" : "Ed Sheeran",
+		"Genre" : ["Pop", "Dancehall", "Tropical-house"],
+		"Year" : 2017 },
+	{
+		"title" : "Watermelon Sugar",
+		"Artist" : "Harry Styles",
+		"Genre" : ["Rock", "Funk-pop", "Indie-pop"],
+		"Year" : 2020 },
+	{
+		"title" : "Sugar",
+		"Artist" : "Maroon 5",
+		"Genre" : ["Disco", "Funk", "Pop", "Soul"],
+		"Year" : 2015 },
+	{
+		"title" : "Let’s Dance",
+		"Artist" : "David Bowie",
+		"Genre" : ["Dance-pop", "Funk", "Funk-rock"],
+		"Year" : 1983 },
+	{
+		"title" : "Signed, Sealed, Delivered",
+		"Artist" : "Stevie Wonder",
+		"Genre" : ["Soul"],
+		"Year" : 1970 },
+	{
+		"title" : "Livin’ On A Prayer",
+		"Artist" : "Bon Jovi",
+		"Genre" : ["Glam-metal"],
+		"Year" : 1986 }		
+]
+
+
+
+

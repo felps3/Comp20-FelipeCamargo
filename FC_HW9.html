@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	
+	<!-- Head section -->
+	<head>
+		<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+		<!--script language="javascript" src="FC_HW9.json"></script-->
+
+		<title> CS 20 - Homework 6 - Felipe Camargo </title>
+
+		<style>
+			* {background: #2f72d0;}
+			h1 {background: #0b00cb; width: 300px; text-align: center; border: solid; border-color: #000; border-width: 5px;border-radius: 0px; display: block;margin-left: auto; margin-right: auto;}
+			.header {width: 100%;align-items: center; justify-content: center;}
+			.java {text-align: center; padding-top: 5%;font-size: 25px;}
+
+		</style>
+	</head>
+
+	<!-- Body section -->
+	<body>
+
+		<div class = "java">
+			<script language = "javascript">
+				$.get( "FC_HW9.json", 
+					function( data ) {
+						str = JSON.stringify(data); /* Get JSON as string */
+						document.write("<h1> JSON Song List </h1>" + str +"<br/>");
+						strHTML = "<ul>";
+						gArray = []; /* Array of genres */
+						data.forEach(function(song) {  /* Write each bullet point */
+						strHTML += "<li>"
+							    + song.title + "<br> " 
+								+ "Artist: " + song.Artist + "<br>"
+								+ "Genre: " + song.Genre.join(", ") + "<br>"
+								+ "Released " + song.Year + "</li>" + "<br>";
+								for (var i = 0; i < song.Genre.length; i++) {
+									if(!gArray.includes(song.Genre[i])) {
+										gArray.push(song.Genre[i]);
+									}
+								} 
+						}) 
+					strHTML += "</ul>";
+					strHTML += "</br>";
+					document.write(strHTML);  /*Output to page*/
+
+					html = "Choose a Genre:" + "<br><br>" + "<select id = 'genres' name= 'genres'>";
+					html += "<option disabled selected value> -- select an option -- </option>";
+					for(var i = 0; i < gArray.length; i++) { /* setup dropwdown options */
+            			html += "<option value=" + gArray[i] + ">" + gArray[i] + "</option>";
+        			}
+					html += "</select>" + "<br>";
+					html += "<br> <div class = 'press'> <button id = 'button'> Filter </button> </div>";
+					document.write(html); /* write dropdown and button to page */
+
+					document.write("<div class = 'result'> </div>");
+
+					$('#button').on('click', function() {
+						artists = "<br>";
+						data.forEach(function(song) {  /* Iterate over all elements */
+							if(song.Genre.includes($('#genres').val())) { /*Check if has correct genre */
+								artists += song.Artist + "<br>"; 
+							}
+						})
+						document.querySelector(".result").innerHTML = artists;
+					})
+
+					document.write("<br><br><br>")
+				})
+
+			</script>
+		</div>
+	</body>
+
+</html>
