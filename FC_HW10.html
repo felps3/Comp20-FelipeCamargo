@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	
+	<!-- Head section -->
+	<head>
+
+		<title> CS 20 - Homework 10 - Felipe Camargo </title>
+		<meta charset="utf-8"/>
+
+		<style>
+			* {background: #DE6EFF;}
+			h1 {background: #9600C2; width: 300px; text-align: center; border: solid; border-color: #000; border-width: 5px;border-radius: 0px; display: block;margin-left: auto; margin-right: auto;}
+			p, #data, #data2 {padding-left: 50px;}
+			.description {text-align: justify; padding: 0 50px; padding-bottom: 30px;}
+		</style>
+
+		<script>
+		function getMeme() {
+			/* Step 1: Make instance of request object...
+			...to make HTTP request after page is loaded*/
+			request = new XMLHttpRequest();
+			//console.log("1 - request object created");
+ 
+			// Step 2: Set the URL for the AJAX request to be the JSON file
+ 
+		request.open("GET", "https://api.imgflip.com/get_memes", true)
+
+			console.log("2 - opened request file");
+ 
+			// Step 3: set up event handler/callback
+
+			request.onreadystatechange = function() {
+				console.log("3 - readystatechange event fired.");
+ 
+				if (request.readyState == 4 && request.status == 200) {
+
+					// Step 5: wait for done + success
+					console.log("5 - response received");
+					result = request.responseText;
+					//alert(result);
+					meme = JSON.parse(result);
+					
+					document.getElementById("data").innerHTML = "Meme ID: " + meme.data.memes[0].id +
+					"<br>" + "Name: " + meme.data.memes[0].name + "<br>" + "<img src = " + 
+					meme.data.memes[0].url + " width = '300'} >";
+				}
+				else if (request.readyState == 4 && request.status != 200) {
+
+					document.getElementById("data").innerHTML = "Something is wrong!  Check the logs to see where this went off the rails";
+
+				}
+
+				else if (request.readyState == 3) {
+
+					document.getElementById("data").innerHTML = "Too soon!  Try again";
+
+				}
+
+			}
+		// Step 4: fire off the HTTP request
+			request.send();
+			console.log("4 - Request sent");
+		}
+
+		//fetch request function 
+		request = fetch("https://api.imgflip.com/get_memes")
+			.then (request => request.text())
+			.then (data => 
+				{
+					meme2 = JSON.parse(data);
+					document.getElementById("data2").innerHTML = "Meme ID: " + meme2.data.memes[1].id + "<br>" + "Name: " + meme2.data.memes[1].name + "<br>" + "<img src = " + 
+						meme2.data.memes[1].url + " width = '300'} >";
+
+				})
+			.catch (error => console.log(error))	 
+
+	</script>
+
+	</head>
+
+	<!-- Body section -->
+	<body onload="getMeme()">
+
+		<h1> Meme API </h1>
+
+		<div class = "description"> 
+			This API was taken from <a href = "https://imgflip.com/api"  target="_blank"> https://imgflip.com/api </a> and it is available at <a href = "https://api.imgflip.com/get_memes"  target="_blank"> https://api.imgflip.com/get_memes </a>. This database cotains the information of lots of popular memes, including their identification, name, a url to the meme template, its width, height, and number of boxes. The overall API is called Imgflip and by adding /get_memes it returns 100 memes ordered by how many times they were captioned in the last 30 days. Inside the json data parameter is a array called memes containing all objects with the properties mentioned before. This API could be very useful on the internet to cite or create memes using famous formats as those are used a lot online. It also provides information and ranking of its objects, so it is also uselful to check what is popular right now and gain more traction.
+		</div>
+
+		<p> GET Request (1# meme): </p>
+		<div id="data">Loading...</div>
+		<br>
+		<p> FETCH Request (2# meme): </p>
+		<div id="data2">Loading...</div>
+
+	</body>
+
+</html>
