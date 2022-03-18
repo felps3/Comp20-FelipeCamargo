@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+<title>Jade Delight</title>
+
+<style>
+  label {
+    display: inline-block;
+    width: 110px;
+    text-align: right;
+  }
+</style>
+
+</head>
+
+<body>
+<script>
+
+function MenuItem(name, cost)
+{
+	this.name = name;
+	this.cost=cost;
+}
+
+menuItems = new Array(
+	new MenuItem("Chicken Chop Suey", 4.5),
+	new MenuItem("Sweet and Sour Pork", 6.25),
+	new MenuItem("Shrimp Lo Mein", 6.25),
+	new MenuItem("Moo Shi Chicken", 7.5),
+	new MenuItem("Fried Rice", 2.85)
+);
+
+function makeSelect(name, minRange, maxRange)
+{
+	var t= "";
+	t = "<select name='" + name + "' size='1'>";
+	for (j=minRange; j<=maxRange; j++)
+	   t += "<option>" + j + "</option>";
+	t+= "</select>"; 
+	return t;
+}
+
+function td(content, className="")
+{
+	return "<td class = '" + className + "'>" + content + "</td>";
+}
+
+function sum(arr)
+{
+	var sum = 0;
+	for (var k = 0; k < arr.length; k++) {
+		sum += arr[k];
+	}
+	return sum;
+}
+
+function printVal(form, name, val)
+{
+	if (val == 0) {
+  	form[name].value = "";
+  } else {
+  	form[name].value = val.toFixed(2);
+  }
+}
+
+function validateText(form, ele, numb)
+{
+	var text = form[ele].value;
+	var ints = 0;
+	if (!numb) { //If numb is false, numerals are not allowed
+		ints = text.replace(/[^0-9]/g,"").length; 
+	}
+	if (text == "" || ints > 0) { //Check if there are numbers in the name
+  	return false;
+  } else {
+  	return true;
+  }
+}
+
+function validateNumb(form, ele)
+{
+	var text = form[ele].value;
+	var ints = text.replace(/[^0-9]/g,"").length;
+	if (text == "" || (ints != 7 && ints != 10)) { //Check if text has 7 or 10 numbers
+  	return false;
+  } else {
+  	return true;
+  }
+}
+
+function getTime(add) {
+	var dt = new Date();
+	var hours = dt.getHours();
+	var minutes = + dt.getMinutes() + add;
+	if (minutes >= 60) {
+		minutes -= 60;
+		hours++;
+	}
+	if (hours >= 24) {
+		hours -= 24;
+	}
+	if (hours < 10) {hours = "0" + hours}
+	if (minutes < 10) {minutes = "0" + minutes}
+	var time =  hours + ":" + minutes;
+	return time;
+}
+
+</script>
+
+<h1>Jade Delight</h1>
+<form>
+
+<p class="userInfo"><label>First Name:</label> <input type="text"  name='fname' /></p>
+<p class="userInfo"><label>Last Name*:</label>  <input type="text"  name='lname' /></p>
+<p class="userInfo address"><label>Street*:</label> <input type="text" name='street' /></p>
+<p class="userInfo address"><label>City*:</label> <input type="text" name='city' /></p>
+<p class="userInfo"><label>Phone*:</label> <input type="text"  name='phone' /></p>
+<p> 
+	<input type="radio"  name="p_or_d" value = "pickup" checked="checked"/>Pickup  
+	<input type="radio"  name='p_or_d' value = 'delivery'/>
+	Delivery
+</p>
+<table border="0" cellpadding="3">
+  <tr>
+    <th>Select Item</th>
+    <th>Item Name</th>
+    <th>Cost Each</th>
+    <th>Total Cost</th>
+  </tr>
+<script>
+
+  var s = "";
+  for (i=0; i< menuItems.length; i++)
+  {
+	  s += "<tr>";
+	  s += td(makeSelect("quan" + i, 0, 10),"selectQuantity");
+	  s += td(menuItems[i].name, "itemName");
+	  s += td("$" +menuItems[i].cost.toFixed(2), "cost");
+	  s += td("$<input type='text' name='cost'/>", "totalCost");
+	  s+= "</tr>";
+  }
+  document.writeln(s);
+
+  $(document).ready(function(){
+
+  	var form = document.forms[0];
+
+  	var order = "pickup";
+  	$(".address").hide();
+
+  	var iQuant = []
+  	var quants = [];
+  	var subtotal = 0;
+  	var tax = 0;
+  	var total = 0;
+
+  	var time = "";
+
+  	var submit = false;
+
+  	$('select').change(function(){
+
+  		for(var i = 0; i < 5; i++) {
+  			var quant = form["quan" + i].value;
+  			iQuant[i] =  quant;
+  			if (quant == 0) {
+  				form["cost"][i].value = "";
+  				quants[i] = 0.00;
+  			} else {
+  				var quantMult = quant * menuItems[i].cost.toFixed(2);
+  				form["cost"][i].value = quantMult;
+  				quants[i] = quantMult;
+  			}
+  		}
+
+			subtotal = sum(quants);
+  		printVal(form, "subtotal", subtotal);
+
+  		tax = subtotal * 0.0625;
+  		printVal(form, "tax", tax);
+
+  		total = subtotal + tax;
+  		printVal(form, "total", total);
+
+  	})
+
+  	$('input').change(function(){
+
+			if (form["p_or_d"][0].checked) {
+				//Pickup
+				$(".address").hide();
+				order = "pickup";
+			} else {
+				//Delivery
+				$(".address").show();
+				order = "delivery";
+			}
+  	})
+
+  	$(':button').on('click', function() {
+
+  		submit = false;
+  		
+  		if (!validateText(form, "lname", false)) {alert("Please enter a valid last name");}
+
+  		else if (!validateNumb(form, "phone")) {alert("Please enter a valid phone number");}
+
+  		else if (order == "delivery") {
+  			if (!validateText(form, "street", true)) {alert("Please enter your street address");}
+  			else if (!validateText(form, "city", true)) {alert("Please enter your city");}
+  			else if (total == 0) {alert("At least one item must be selected to place a order");}
+  			else {
+  				alert("Thank you for your order");
+  				time = getTime(30);
+  				submit = true;
+  			}
+  		}
+
+  		else if (total == 0) {alert("At least one item must be selected to place a order");}
+
+  		else {
+  			alert("Thank you for your order");
+  			time = getTime(15);
+  			submit = true;
+  		}
+
+  		if (submit) {
+	  		var window_tool = open("");
+	  		$(window_tool).ready(function() {
+	  			window_tool.document.write("<head><style> h1 {padding-top: 10px; padding-left: 15px;} .order, .money, .time {padding-left: 15px;}</style></head>");
+	  			window_tool.document.write("<h1><b> Order Checkout </b></h1><br>");
+
+	  			window_tool.document.write("<div class = 'order'>");
+	  			window_tool.document.write("Order items:<br>");
+	  			for (var m = 0; m < quants.length; m++) {
+	  				if (quants[m] != 0) {
+	  					window_tool.document.write(iQuant[m] + ' ' + menuItems[m].name + ': ' + quants[m] + '$<br>');
+	  				}
+	  			}
+	  			window_tool.document.write("</div><br>");
+
+	  			window_tool.document.write("<div class = 'money'>");
+	  			window_tool.document.write("Subtotal: $" + subtotal.toFixed(2) + "<br>");
+	  			window_tool.document.write("Tax: $" + tax.toFixed(2) + "<br>");
+	  			window_tool.document.write("<b>Total: $" + total.toFixed(2) + "</b><br>");
+	  			window_tool.document.write("</div><br>");
+
+	  			window_tool.document.write("<div class = 'time'>");
+	  			if (order == "pickup") {
+	  				window_tool.document.write("Ready for pick up at " + time + "<br>");
+	  			} else {
+	  				window_tool.document.write("Expected delivery at " + time + "<br>");
+	  			}
+	  			window_tool.document.write("</div>");
+
+	  		})
+	  	}
+	  })
+
+  })
+
+</script>
+</table>
+<p class="subtotal totalSection"><label> Subtotal: </label> $ <input type="text"  name='subtotal' id="subtotal" />
+</p>
+<p class="tax totalSection"><label>Mass tax 6.25%:</label>
+  $ <input type="text"  name='tax' id="tax" />
+</p>
+<p clas="total totalSection"><label>Total:</label> $ <input type="text"  name='total' id="total" />
+</p>
+
+<input type = "button" value = "Submit Order" />
+
+</form>
+</body>
+</html>
